@@ -12,7 +12,7 @@ An implementation of the New York Times Wordle word guessing game using Sets and
 
 ### Music Playlist
 
-A music playlist manager that enables adding, playing, and manipulating a queue of songs. It uses a Queue to store the playlist and a Stack to track history.
+A music playlist manager that enables adding, playing, and manipulating a queue of songs. It uses a Queue to store the playlist and a Stack to track history.  Includes JUnit tests to validate key functionality.
 
 **Key data structures:** Queue, Stack
 
