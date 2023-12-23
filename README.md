@@ -1,6 +1,6 @@
 # Data Structures Projects
 
-This repository contains various projects demonstrating the usage and implementation of common data structures in Java.
+This repository contains various projects demonstrating the usage and implementation of common data structures in Java. Developed by Rudra Prakash Singh.
 
 ## Projects
 
