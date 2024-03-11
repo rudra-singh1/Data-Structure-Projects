@@ -4,6 +4,14 @@ This repository contains various projects demonstrating the usage and implementa
 
 ## Projects
 
+### Huffman Encoding
+
+(Not within folder category - just files)
+
+Implements Huffman coding in Java for data compression, reducing file sizes by assigning shorter codes to frequently occurring characters.
+
+**Key data structures:** Binary Search Tree, Priority Queues
+
 ### Absurdle
 
 An implementation of the New York Times Wordle word guessing game using Sets and Maps. Absurdle aims to prolong the game by minimally pruning the dictionary with each guess.
