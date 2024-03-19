@@ -1,15 +1,12 @@
+
 import java.util.*;
 import java.io.*;
 
-
-public class Client{
-    // TODO: Change this line once you've implemented a cipher!
-      private static String dummy = "BCDEFGHIJKLMNOPQRSTUVWXYZA"; //encrypting to
-    //private static String dummy = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; real alphabet
-
+public class Client {
     public static final Cipher CHOSEN_CIPHER = null;
-    //public static final Cipher CHOSEN_CIPHER = new MultiCipher(List.of(new CaesarShift(4), new CaesarKey("123"),new CaesarShift(12), new CaesarKey("lemon")));
-
+    public static final Cipher CHOSEN_CIPHER = new MultiCipher(List.of(
+        new solution.CaesarShift(4), new solution.CaesarKey("123"),
+        new solution.CaesarShift(100)));
     public static void main(String[] args) throws FileNotFoundException {
         Scanner console = new Scanner(System.in);
         System.out.println("Welcome to the CSE 123 cryptography application!");

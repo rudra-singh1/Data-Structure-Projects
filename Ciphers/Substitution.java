@@ -1,71 +1,100 @@
+//Substitution class extends the Cipher class. It embodies an encryption algorithm 
+//where each input character's index is assigned and subsequently replaced 
+//with the corresponding output character from the shifter alphabet supplied to the 
+//Substituiton class.
 public class Substitution extends Cipher{
 
     //Fields
-    private String shifter; //aka shifted alphabet
+    private String shifter; 
 
+    //Behavior:
+    //  -Constructs a new Substitution Cipher with an empty shifter.
     public Substitution(){
         this.shifter = "";
     }
 
+    //Behavior: 
+    //  -Constructs a new Substitution Cipher with the provided shifter.
+    //Parameters:
+    //  -shifter: the shifter string
+    //Exceptions:
+    //  -IllegalArgumentException: thrown if the length of the shifter doesn't match the  
+    //   number of characters within Substitution Cipher's encodable range, contains a  
+    //   duplicate character, or any character falls outside the encodable range
     public Substitution(String shifter){
-        if((shifter.length() != Cipher.TOTAL_CHARS) || (duplicateCheck(shifter)) || isStringEncodable(shifter)){
-            throw new IllegalArgumentException();
-        }
-        this.shifter = shifter;
+        setShifter(shifter);
     }
 
+    // Behavior:
+    //   -Updates the shifter for the Substitution Cipher.
+    // Parameters:
+    //   -shifter: the new shifter string.
+    // Exceptions:
+    //   -IllegalArgumentException: thrown if the length of the shifter doesn't match the  
+    //   number of characters within Substitution Cipher's encodable range, contains a  
+    //   duplicate character, or any character falls outside the encodable range
     public void setShifter(String shifter){
-        // if((shifter.length() != Cipher.TOTAL_CHARS) || (duplicateCheck(shifter) == true) || isStringEncodable(shifter)){
-        //     throw new IllegalArgumentException();
-        // }
-
-        //FOXXXXX BEFORE SUBMITTING
-        if(shifter.length() != Cipher.TOTAL_CHARS){
-            
-            System.out.println("1");
-            throw new IllegalArgumentException();
-        } else if (duplicateCheck(shifter) == true){
-            System.out.println("2");
-            throw new IllegalArgumentException();
-        } else if (isStringEncodable(shifter)){
-            System.out.println("3");
+        if((shifter.length() != Cipher.TOTAL_CHARS) || (duplicateCheck(shifter)) || 
+        isStringEncodable(shifter)){
             throw new IllegalArgumentException();
         }
-
         this.shifter = shifter;
     }
-
+    
+    //Behaviour:
+    //  - Applies this Substitution Cipher to the input, returning the result
+    //Parameters:
+    //  - input: the string to encrypt
+    //Returns:
+    //  -String: the encrypted result
+    //Exceptions:
+    //  -IllegalStateException: thrown if shifter is null or empty
     public String encrypt(String input){
-        if(input == null || input.length()==0){
-            throw new IllegalStateException ();
+        if(shifter == null || shifter.length()==0){
+            throw new IllegalStateException();
         }
 
         String encrypted = "";
         for (int i = 0; i < input.length(); i++) {
-            char c = input.toUpperCase().charAt(i); // char c = b
-            int index = (int) c - Cipher.MIN_CHAR; //66-65
-            
-            encrypted += shifter.charAt(index);
-        }
+            char c = input.charAt(i); // char c = b
 
+            int index = (int) c - Cipher.MIN_CHAR; 
+            encrypted += shifter.charAt(index);
+
+        }
         return encrypted;
     }
 
+    //Behaviour:
+    //  - Inverses this Substitution Cipher on the input, returning the result.
+    //Parameters:
+    //  - input: the string to decrypt
+    //Returns:
+    //  -String: the decrypted result
+    //Exceptions:
+    //  -IllegalStateException: thrown if shifter is null or empty
     public String decrypt(String input){
-        if(input == null || input.length()==0){
+        if(shifter == null || shifter.length()==0){
             throw new IllegalStateException ();
         }
 
         String decrypted = "";
         for (int i = 0; i < input.length(); i++) {
-            char c = input.toUpperCase().charAt(i);
+            char c = input.charAt(i);
             int index = shifter.indexOf(c);
+
             decrypted += (char) (index + MIN_CHAR);
         }
         return decrypted;
     }
 
-    private static boolean duplicateCheck(String s){
+    //Behaviour:
+    //  - Checks for duplicate characters in a given string.
+    //Parameters:
+    //  - s: the input string to check for duplicates.
+    //Returns:
+    //  -boolean: true if duplicates exist, false otherwise.
+    private boolean duplicateCheck(String s){
         for (int i = 0; i < (s.length() - 1); i++) {
             for (int j = i + 1; j < s.length(); j++) {
                 if (s.charAt(i) == s.charAt(j)) {
@@ -76,23 +105,21 @@ public class Substitution extends Cipher{
         return false;
     }
 
-    private static boolean isStringEncodable(String input){
+    //Behaviour:
+    //  - Checks if any character in the input string falls outside the encodable range.
+    //Parameters:
+    //  - input: the input string to check.
+    //Returns:
+    //  -boolean: true if any character is outside the encodable range, false otherwise.
+    private boolean isStringEncodable(String input){
         for (int i = 0; i < input.length(); i++) {
             char currentChar = input.charAt(i);
             int charCode = (int) currentChar;
             
             if (charCode < Cipher.MIN_CHAR || charCode > Cipher.MAX_CHAR) {
-                return true; // Found a character outside the encodable range
+                return true; 
             }
         }
-        return false; // All characters are within the encodable range
-    }
-
-    public boolean isDuplicateCheck(String s) {
-        return duplicateCheck(s);
-    }
-
-    public boolean isStringEncodableCheck(String input) {
-        return isStringEncodable(input);
+        return false; 
     }
 }
