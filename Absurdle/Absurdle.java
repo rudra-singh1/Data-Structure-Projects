@@ -11,7 +11,6 @@ public class Absurdle  {
     public static final String YELLOW = "🟨";
     public static final String GRAY = "⬜";
 
-    // [[ ALL OF MAIN PROVIDED ]]
     public static void main(String[] args) throws FileNotFoundException {
         Scanner console = new Scanner(System.in);
         System.out.println("Welcome to the game of Absurdle.");
@@ -39,7 +38,6 @@ public class Absurdle  {
         printPatterns(guessedPatterns);
     }
 
-    // [[ PROVIDED ]]
     // Prints out the given list of patterns.
     // - List<String> patterns: list of patterns from the game
     public static void printPatterns(List<String> patterns) {
@@ -48,7 +46,6 @@ public class Absurdle  {
         }
     }
 
-    // [[ PROVIDED ]]
     // Returns true if the game is finished, meaning the user guessed the word. Returns
     // false otherwise.
     // - List<String> patterns: list of patterns from the game
@@ -60,7 +57,6 @@ public class Absurdle  {
         return !lastPattern.contains("⬜") && !lastPattern.contains("🟨");
     }
 
-    // [[ PROVIDED ]]
     // Loads the contents of a given file Scanner into a List<String> and returns it.
     // - Scanner dictScan: contains file contents
     public static List<String> loadFile(Scanner dictScan) {
